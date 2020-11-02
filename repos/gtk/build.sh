@@ -14,11 +14,9 @@ if test -f "$DIR/meson.build"; then
     ninja -C "$DIR/build-meson"
     ninja -C "$DIR/build-meson" install
 else
-    if test ! -d "$DIR/build"; then
-        (
-            cd $DIR
-            ./autogen.sh --prefix "$DESTDIR/usr/local"
-        )
+    cd $DIR
+    if test ! -f "Makefile"; then
+        ./autogen.sh --prefix "$DESTDIR/usr/local"
     fi
     make
     make install
