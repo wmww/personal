@@ -1,0 +1,1 @@
+origin: git@github.com:OpenShot/libopenshot.git
