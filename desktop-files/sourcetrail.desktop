@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Sourcetrail
+GenericName=Code inspector
+Comment=See all the code
+Exec=/home/wmww/code/apps/Sourcetrail/build/app/Sourcetrail
+Icon=/home/wmww/code/apps/Sourcetrail/bin/app/data/gui/icon/logo_1024_1024.png
+Terminal=false
+Type=Application
+Categories=Development;
