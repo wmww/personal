@@ -1,0 +1,466 @@
+# i3 config file (v4)
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+#__________________________________/ Settings \__________________________________
+# to change the system theme, install lxappearance (called 'customize look and feel once installed)
+
+#____/ Recomended Packages \____
+
+	#xbuntu desktop intagration, required for workspace switcher
+	# ppa:aacebedo/libi3ipc-glib
+	# libi3ipc-glib
+
+	#workspace switcher applet
+	# ppa:aacebedo/xfce4-i3-workspaces-plugin
+	# sudo apt-get install xfce4-i3-workspaces-plugin
+	
+	# xfce4-panel
+
+
+#____/ Display vars \____
+
+	# set $clrBknd		#000000
+	# set $cltBoarder	#000000
+	# set $clrUnselect	#171a1f
+	# set $clrSelect	#5294e2
+	# set $clrText		#ffffff
+	
+	# arc dark
+	# set $clrBknd		#000000
+	# set $cltBoarder		#000000
+	# set $clrUnselect	#171a1f
+	# set $clrSelect		#303641
+	# set $clrAltSelect	#252935
+	# set $clrText		#5294e2
+	
+	# green
+	# set $clrBknd		#000000
+	# set $cltBoarder		#000000
+	# set $clrUnselect	#000000
+	# set $clrSelect		#202020
+	# set $clrText		#00c000
+
+	# custom green
+	# set $clrBknd		#000000
+	# set $cltBoarder		#000000
+	# set $clrUnselect	#171a1f
+	# set $clrSelect		#303641
+	# set $clrAltSelect	#252935
+	# set $clrText		#34df55
+
+	# custom green
+	set $clrBknd		#050505
+	set $cltBoarder		#050505
+	set $clrUnselect	#303030
+	set $clrSelect		#ffffff
+	set $clrAltSelect	#606060
+	set $clrText		#60b0d0
+	
+	set $ftextSize 0
+
+
+#____/ Defaults \____
+#set the command to use for common things
+#make sure all options are commented out with # except the one you want
+
+	set $scriptDir ~/.config/i3
+	
+	set $systemMonitor gnome-system-monitor
+
+#	set $fileManager nautilus --no-desktop
+#	set $fileManager pcmanfm
+#	set $fileManager thunar
+    set $fileManager nemo
+
+ 
+	set $calcApp gnome-calculator
+
+	#set $terminalApp gnome-terminal
+	#set $terminalApp termite
+	set $terminalApp lxterminal
+
+	# launcherApp is default, launcherApp1 is launched with the same binding + Shift
+	set $launcherApp synapse
+	set $launcherApp1 ~/code/WidapLauncher/WidapLauncher
+
+
+	set $browserApp firefox
+#	set $browserApp google-chrome
+
+
+#____/ Keys \____
+
+	#set the variable $alt to the key Mod1, which is the alt key
+	set $alt Mod1
+
+	#set $mod to the key Mod4, which is the super key
+	set $mod Mod4
+	
+	#swap caps lock and escape
+	#exec --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape" # do the swap
+	#exec --no-startup-id xmodmap -e "clear Lock" # stop the light from toggeling
+
+
+#__________________________________/ Init \__________________________________
+
+
+#____/ Desktop Background \____
+
+	# for auth on graphical applications I think
+	# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+	# exec --no-startup-id libinput-gestures-setup start
+
+	# exec --no-startup-id /usr/bin/compton --config /home/joe/.compton.conf~.i3/config
+	# exec --no-startup-id /usr/bin/compton
+	exec --no-startup-id [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+	# exec --no-startup-id xrandr --dpi 192
+
+	#set background to a solid color
+	# exec --no-startup-id xsetroot -solid "$clrBknd"
+
+	#set background to an image
+	# exec --no-startup-id feh --bg-scale /home/user/path/to/image &
+	# exec --no-startup-id feh --bg-scale /home/william/pictures/backgrounds/arch_on_lake.png &
+	# output "*" solid_color #0000f0
+
+	output "*" background /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+	
+	#not sure what this one does
+	# exec --no-startup-id sh ~/.fehbg
+
+
+#____/ Panels and applets \____
+
+	#start wifi manager
+	# exec --no-startup-id nm-applet
+
+	#start power manager
+	# exec --no-startup-id xfce4-power-manager
+
+	#start volume manager
+	# exec --no-startup-id gnome-sound-applet
+
+	#xfce panel
+	#exec --no-startup-id GTK_THEME=Adwaita:dark xfce4-panel --disable-wm-check
+	#exec --no-startup-id xfce4-panel --disable-wm-check
+
+	#LXPanel
+	#exec --no-startup-id lxpanel
+	
+	#Mate panel
+	# exec --no-startup-id mate-panel
+	
+	#Cairo dock
+	# exec --no-startup-id cairo-dock -o
+	
+	#KDE connect
+	#exec --no-startup-id /usr/lib/kdeconnectd
+
+#__________________________________/ Set Launch Bindings \__________________________________
+
+
+#____/ Settings and Control \____
+
+	# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+	bindsym $mod+Shift+r reload
+
+	#exit i3 (logs you out of your X session)
+	# bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+	# bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+	bindsym Control+$mod+Shift+BackSpace exit
+
+	bindsym $mod+Delete exec $systemMonitor
+
+	# volume control
+	bindsym $mod+v exec pavucontrol
+
+	# help: users guide
+	bindsym $mod+h exec $browserApp ~/Downloads/i3UserGuide.html
+
+	# open this config file
+	bindsym $mod+c exec gedit ~/.config/i3/config
+
+	# type tilde
+	bindsym Control+less exec "sleep 0.2; xdotool key --clearmodifiers asciitilde"
+	
+#____/ custom scripts \____
+	bindsym $mod+1 exec $scriptDir/scripts/1.sh
+	bindsym $mod+2 exec $scriptDir/scripts/1.sh
+	bindsym $mod+3 exec $scriptDir/scripts/3.sh
+	bindsym $mod+4 exec $scriptDir/scripts/4.sh
+	
+	bindsym $mod+Shift+1 exec gedit $scriptDir/scripts/1.sh
+	bindsym $mod+Shift+2 exec gedit $scriptDir/scripts/2.sh
+	bindsym $mod+Shift+3 exec gedit $scriptDir/scripts/3.sh
+	bindsym $mod+Shift+4 exec gedit $scriptDir/scripts/4.sh
+		
+	
+#____/ Run Common Programs \____
+
+
+#	bindsym $mod+Control+n exec nautilus --no-desktop
+#	bindsym $mod+Control+f exec firefox
+#	bindsym $mod+Control+b exec blender
+#	bindsym $mod+Control+o exec loffice
+#	bindsym $mod+Control+w exec loffice -writer
+#	bindsym $mod+Control+g exec gimp
+#	bindsym $mod+Control+c exec codeblocks
+#	bindsym $mod+Control+p exec idle
+#	bindsym $mod+Control+e exec gedit
+#	bindsym $mod+Control+s exec software-center
+#	bindsym $mod+g exec godot
+	bindsym $mod+f exec $fileManager
+	bindsym $mod+equal exec $calcApp
+	bindsym $mod+Return exec $terminalApp
+	#open a program launcher
+	bindsym Menu exec $launcherApp
+	bindsym $mod+space exec --no-startup-id $launcherApp
+	bindsym $mod+Shift+space exec $launcherApp1
+	bindsym $mod+l exec swaylock
+
+
+#__________________________________/ Window Managment \__________________________________
+
+
+#____/ Window Managment Key Bindings \____
+
+	# kill focused window
+	bindsym $mod+q kill
+
+	# change focus
+	#bindsym $mod+Tab focus right
+	bindsym $mod+Left focus left
+	bindsym $mod+Down focus down
+	bindsym $mod+Up focus up
+	bindsym $mod+Right focus right
+	bindsym $mod+x focus right
+	bindsym $mod+z focus left
+
+	# move window
+	bindsym $mod+Shift+Left move left
+	bindsym $mod+Shift+Down move down
+	bindsym $mod+Shift+Up move up
+	bindsym $mod+Shift+Right move right
+	bindsym $mod+Shift+x move right
+	bindsym $mod+Shift+z move left
+	
+	bindsym $mod+w layout toggle tabbed stacking
+	bindsym $mod+s layout toggle splith splitv
+	bindsym $mod+Shift+s splith
+	
+	bindsym $mod+e focus parent
+	bindsym $mod+d focus child
+	
+	# Macbook F3 and F4
+	bindsym XF86LaunchA layout tabbed
+	bindsym XF86LaunchB layout toggle splith splitv
+
+	# toggle tiling / floating
+	bindsym $mod+Shift+t floating toggle
+
+	# Use this key to drag floating windows to their wanted position without clicking on the bar
+	floating_modifier $alt
+
+	# change focus between tiling / floating windows
+	bindsym $mod+t focus mode_toggle
+	
+	# enter fullscreen mode for the focused container
+	# M for maximize
+
+	bindsym $mod+m fullscreen
+	# switch to workspace
+	#bindsym $alt+Down workspace $(cat /dev/urandom | tr -dc 'a-zA-Z' | fold -w 8 | head -n 1)
+	#bindsym $alt+Tab workspace next
+	bindsym $alt+Right workspace next
+	bindsym $alt+Left workspace prev
+	bindsym $alt+x workspace next
+	bindsym $alt+z workspace prev
+	bindsym $alt+q workspace 1
+	bindsym $alt+w workspace 2
+	bindsym $alt+e workspace 3
+	bindsym $alt+r workspace 4
+	bindsym $alt+t workspace 5
+	bindsym $alt+y workspace 6
+
+	#swap screens (only matters if your using multiple monitors)
+	bindsym $alt+Shift+s workspace 6; move workspace to output right; workspace 5; move workspace to output right; workspace 4; move workspace to output right; workspace 3; move workspace to output right; workspace 2; move workspace to output right; workspace 1; move workspace to output right;
+
+	#advance screen of current workspace (again, multi monitor)
+	bindsym $alt+Shift+a move workspace to output right
+
+	# move focused window to workspace
+	#bindsym $alt+Shift+Tab move container to workspace next; workspace next
+	bindsym $alt+Shift+Right move container to workspace next; workspace next
+	bindsym $alt+Shift+Left move container to workspace prev; workspace prev
+	bindsym $alt+Shift+x move container to workspace next; workspace next
+	bindsym $alt+Shift+z move container to workspace prev; workspace prev
+	bindsym $alt+Shift+q move container to workspace 1; workspace 1
+	bindsym $alt+Shift+w move container to workspace 2; workspace 2
+	bindsym $alt+Shift+e move container to workspace 3; workspace 3
+	bindsym $alt+Shift+r move container to workspace 4; workspace 4
+	bindsym $alt+Shift+t move container to workspace 5; workspace 5
+	bindsym $alt+Shift+y move container to workspace 6; workspace 6
+
+	#resize
+	bindsym $mod+Control+Left resize shrink width 8 px or 8 ppt
+	bindsym $mod+Control+Down resize shrink height 8 px or 8 ppt
+	bindsym $mod+Control+Up resize grow height 8 px or 8 ppt
+	bindsym $mod+Control+Right resize grow width 8 px or 8 ppt
+	
+	bindsym $mod+Control+Shift+Left resize shrink width 2 px or 2 ppt
+	bindsym $mod+Control+Shift+Down resize shrink height 2 px or 2 ppt
+	bindsym $mod+Control+Shift+Up resize grow height 2 px or 2 ppt
+	bindsym $mod+Control+Shift+Right resize grow width 2 px or 2 ppt
+	
+	#Power off
+	
+	bindsym XF86PowerOff exec --no-startup-id $scriptDir/powerOff.sh
+	
+	#volume control
+	
+	#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+	#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%; exec --no-startup-id notify-send "Volume Up" --icon=multimedia-volume-control
+	#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle; exec --no-startup-id notify-send "Mute Toggle" --icon=multimedia-volume-control
+	#bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-; exec --no-startup-id $scriptDir/WidapPopup/WidapPopupRun volume
+	#bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+; exec --no-startup-id $scriptDir/WidapPopup/WidapPopupRun volume
+	#bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle; exec --no-startup-id $scriptDir/WidapPopup/WidapPopupRun volume
+	bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5; exec --no-startup-id $scriptDir/WidapPopup/WidapPopupRun volume
+	bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5; exec --no-startup-id $scriptDir/WidapPopup/WidapPopupRun volume
+	bindsym XF86AudioMute exec --no-startup-id pamixer -t; exec --no-startup-id $scriptDir/WidapPopup/WidapPopupRun volume
+	
+	#Brightness
+	
+	bindsym XF86MonBrightnessUp exec --no-startup-id $scriptDir/brightnessControl.sh 4
+	bindsym XF86MonBrightnessDown exec --no-startup-id $scriptDir/brightnessControl.sh -4
+	
+	#Keyboard brightness
+	
+	bindsym XF86KbdBrightnessUp exec --no-startup-id $scriptDir/kbBrightnessControl.sh 8
+	bindsym XF86KbdBrightnessDown exec --no-startup-id $scriptDir/kbBrightnessControl.sh -8
+
+#____/ Font \____
+
+	# Font for window titles. Will also be used by the bar unless a different font
+	# is used in the bar {} block below. ISO 10646 = Unicode
+	# The font above is very space-efficient, that is, it looks good, sharp and
+	# clear in small sizes. However, if you need a lot of unicode glyphs or
+	# right-to-left text rendering, you should instead use pango for rendering and
+	# chose a FreeType font, such as:
+
+	# William's note: getting the right name is hard.
+	# It has to do with the font name, but is not the file name
+	# ex: Ubuntu-BI is "font pango:Ubuntu Bold Italic [size]" in that order
+
+	# set $fontVar -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+	# set $fontVar pango:DejaVu Sans Mono $textSize
+	#set $fontVar pango:Ubuntu Mono 12
+	set $fontVar pango:xos4 Terminus Bold 12
+	# set $fontVar pango:Ubuntu Regular $textSize
+
+#____/ Window Settings \____
+
+	font $fontVar
+
+	#window colors
+	# class                 border			background		text		    indicator       child border
+	client.focused          $clrSelect		$clrSelect		$clrText		$clrSelect      $clrSelect
+	client.focused_inactive $clrAltSelect	$clrAltSelect	$clrText		$clrSelect      $clrUnselect
+	client.unfocused        $clrUnselect	$clrUnselect	$clrText		$clrSelect      $clrUnselect
+	client.urgent           $clrSelect		$clrText		$clrText		$clrSelect      $clrUnselect
+
+	#new workspaces start tabbed
+	workspace_layout tabbed
+
+	#stop little borders on the edges
+	hide_edge_borders both
+
+	#boarders around windows (does not apply on edge of screen if hide_edge_borders is used
+	default_border pixel 2
+	#new_window none
+	#
+	
+	# gaps
+	gaps outer 0
+	gaps inner 0
+	
+	# leave fullscreen on popup
+	# popup_during_fullscreen ignore
+
+	#multi monitor stuff (shouldn't affect you unless you use multiple monitors)
+	workspace 1 output LVDS1
+	workspace 2 output LVDS1
+	workspace 3 output LVDS1
+	workspace 4 output VGA1
+	workspace 5 output VGA1
+	workspace 6 output VGA1
+
+	#this is suposed to put pandora on a new workspace, but it doesn't work
+	#assign [title="Pandora Internet Radio"] ♫
+
+	#make some windows floating (if a window requests properly to be floating it doesn't have to be on this list)
+	for_window [class="Xfce4-notifyd"] floating enable; border none; focus mode_toggle
+	for_window [title="Volume Control"] floating enable
+	for_window [title="Firefox Preferences"] floating enable
+	for_window [title="Calculator"] floating enable
+	for_window [title="Widap Launcher"] floating enable
+	for_window [title="WidapPopupWindow"] floating enable
+	for_window [title="Firefox — Sharing Indicator"] floating enable; move position 0 0; focus mode_toggle
+	for_window [app_id="Eclipse" title="Find/Replace"] floating enable; border none; focus mode_toggle
+	
+	# make the nemo jump-to-file text box float
+	for_window [title="^nemo$"] floating enable
+	
+	#calender popup
+	for_window [title="wrapper-1.0"] floating enable
+	
+	# Eclipse IDE
+	for_window [title="Find/Replace"] floating enable
+
+	# Start i3bar to display a workspace bar (plus the system information i3status
+	# finds out, if available)
+
+	# output eDP-1 scale 2
+
+input 1739:30383:DELL08AF:00_06CB:76AF_Touchpad {
+    middle_emulation enabled
+    tap enabled
+    dwt enabled
+    click_method clickfinger
+}
+
+input 9639:64103:CX_2.4G_Receiver_Mouse {
+    accel_profile flat
+    pointer_accel 0
+}
+
+bar {
+    #status_command i3status --config ~/.config/i3/status-config
+    status_command ${HOME}/code/utils/wmww_statusline/wmww_status
+    #mode hide
+    #hidden_state hide
+    modifier $alt
+    # font pango:xos4 Terminus Bold 16
+    # font size 14
+    font Monospace Regular 16
+
+    # diable vertical scrolling
+    bindsym button4 nop
+    bindsym button5 nop
+    # diable horizontal scrolling
+    bindsym button6 nop
+    bindsym button7 nop
+
+    colors {
+        background $clrUnselect
+        statusline $clrText
+        #separator $clrSelect
+        separator #ffffff
+        
+		#					border			bknd			text
+        focused_workspace	$clrSelect		$clrSelect		$clrText
+        active_workspace   	$clrSelect		$clrSelect		$clrText
+        inactive_workspace	$clrUnselect	$clrUnselect	$clrText
+        urgent_workspace  	$clrUnselect	#ff0000			$clrText
+    }
+}
