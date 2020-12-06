@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright: includelife.wordpress.com 2015.
+	File distributed under the MIT License. You can read the license text at http://opensource.org/licenses/MIT
+-->
+<!DOCTYPE language SYSTEM "language.dtd">
+<language name="Brainfuck" version="1.00" kateversion="3.8.5" section="Sources" extensions="*.b;*.bf;*.brainfuck" author="includelife.wordpress.com" license="MIT">
+	<highlighting>
+		<contexts>
+			<context name="Start" attribute="Normal Text" lineEndContext="#stay">
+				<IncludeRules context="Brainfuck"/>
+			</context>
+			<context name="Brainfuck" attribute="Normal Text" lineEndContext="#stay">
+				<DetectSpaces/>
+				<StringDetect attribute="personal" context="Comment" String="[-][" beginRegion="comment"/>
+				<RegExpr attribute="math" context="#stay" String="[-\+]"/>
+				<RegExpr attribute="pointer" context="#stay" String="[&lt;&gt;]"/>
+				<DetectChar attribute="loop" context="#stay" char="[" beginRegion="WBlock"/>
+				<DetectChar attribute="loop" context="#stay" char="]" endRegion="WBlock"/>
+				<RegExpr attribute="IO" context="#stay" String="[,.]"/>
+				<RegExpr attribute="other" context="#stay" String="[a-zA-z0-9]"/>
+				<RegExpr attribute="other" context="#stay" String="[#^@:;~%=()$*{}?'|`´!_/]"/>
+				<RegExpr attribute="other" context="#stay" String="[&amp;&quot;]"/>
+			</context>
+			<context name="Comment" attribute="personal" lineEndContext="#stay">
+				<DetectSpaces/>
+				<DetectIdentifier/>
+				<StringDetect attribute="personal" context="#pop" String="]" endRegion="comment"/>
+			</context>
+		</contexts>
+		<itemDatas>
+			<itemData name="math" defStyleNum="dsNormal"/>
+			<itemData name="pointer" defStyleNum="dsOthers"/>
+			<itemData name="loop" defStyleNum="dsDataType"/>
+			<itemData name="IO" defStyleNum="dsString"/>
+			<itemData name="other" defStyleNum="dsComment"/>
+			<itemData name="personal" defStyleNum="dsFunction"/>
+		</itemDatas>
+	</highlighting>
+</language>
