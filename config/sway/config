@@ -406,7 +406,7 @@
 	for_window [title="Widap Launcher"] floating enable
 	for_window [title="WidapPopupWindow"] floating enable
 	for_window [title="Firefox — Sharing Indicator"] floating enable; move position 0 0; focus mode_toggle
-	for_window [app_id="Eclipse" title="Find/Replace"] floating enable; border none; focus mode_toggle
+	for_window [app_id="Eclipse" title="Find/Replace"] exec $scriptDir/scripts/catch_and_show_errors.sh $scriptDir/scripts/position_eclipse_find_window.py; border none;
 	
 	# make the nemo jump-to-file text box float
 	for_window [title="^nemo$"] floating enable
