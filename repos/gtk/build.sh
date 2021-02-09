@@ -8,7 +8,7 @@ if test -f "$DIR/meson.build"; then
     if test ! -d "$DIR/build-meson"; then
         (
             cd $DIR
-            meson build-meson
+            meson build-meson --prefix "$GTK_INSTALL/usr/local"
         )
     fi
     ninja -C "$DIR/build-meson"
@@ -16,7 +16,7 @@ if test -f "$DIR/meson.build"; then
 else
     cd $DIR
     if test ! -f "Makefile"; then
-        ./autogen.sh --prefix "$DESTDIR/usr/local"
+        ./autogen.sh --prefix "$GTK_INSTALL/usr/local"
     fi
     make
     make install
