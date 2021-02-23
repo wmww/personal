@@ -1,0 +1,89 @@
+{
+    "servers": {
+        "bibtex": {
+            "use": "latex",
+            "highlightingModeRegex": "^BibTeX$"
+        },
+        "c": {
+            "command": ["clangd", "-log=error", "--background-index"],
+            "commandDebug": ["clangd", "-log=verbose", "--background-index"],
+            "url": "https://clang.llvm.org/extra/clangd/",
+            "highlightingModeRegex": "^(C|ANSI C89|Objective-C)$"
+        },
+        "cpp": {
+            "use": "c",
+            "highlightingModeRegex": "^(C\\+\\+|ISO C\\+\\+|Objective-C\\+\\+)$"
+        },
+        "d": {
+            "command": ["serve-d"],
+            "rootIndicationFileNames": ["dub.json"],
+            "url": "https://github.com/Pure-D/serve-d",
+            "highlightingModeRegex": "^D$"
+        },
+        "fortran": {
+            "command": ["fortls"],
+            "rootIndicationFileNames": [".fortls"],
+            "url": "https://github.com/hansec/fortran-language-server",
+            "highlightingModeRegex": "^Fortran.*$"
+        },
+        "go": {
+            "command": ["go-langserver"],
+            "commandDebug": ["go-langserver", "-trace"],
+            "url": "https://github.com/sourcegraph/go-langserver",
+            "highlightingModeRegex": "^Go$"
+        },
+        "haskell": {
+            "command": ["hie-wrapper"],
+            "rootIndicationFileNames": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml"],
+            "url": "https://github.com/haskell/haskell-ide-engine",
+            "highlightingModeRegex": "^Haskell$"
+        },
+        "javascript": {
+            "command": ["typescript-language-server", "--stdio"],
+            "rootIndicationFileNames": ["package.json", "package-lock.json"],
+            "highlightingModeRegex": "^JavaScript.*$"
+        },
+        "latex": {
+            "command": ["texlab"],
+            "url": "https://texlab.netlify.com/",
+            "highlightingModeRegex": "^LaTeX$"
+        },
+        "ocaml": {
+            "command": ["ocamllsp"],
+            "url": "https://github.com/ocaml/ocaml-lsp",
+            "highlightingModeRegex": "^Objective Caml.*$"
+        },
+        "perl": {
+            "command": ["perl", "-MPerl::LanguageServer", "-e", "Perl::LanguageServer::run", "--"],
+            "commandDebug": ["perl", "-MPerl::LanguageServer", "-e", "Perl::LanguageServer::run", "--", "--debug"],
+            "url": "https://github.com/richterger/Perl-LanguageServer",
+            "highlightingModeRegex": "^Perl$"
+        },
+        "python": {
+            "command": ["pyls", "--check-parent-process"],
+            "url": "https://github.com/palantir/python-language-server",
+            "highlightingModeRegex": "^Python$"
+        },
+        "rust": {
+            "command": ["rls"],
+            "rootIndicationFileNames": ["Cargo.lock", "Cargo.toml"],
+            "url": "https://github.com/rust-lang/rls",
+            "highlightingModeRegex": "^Rust$"
+        },
+        "typescript": {
+            "use": "javascript",
+            "highlightingModeRegex": "^TypeScript.*$"
+        },
+        "r": {
+            "command": ["R", "--slave", "-e", "languageserver::run()"],
+            "url": "https://github.com/REditorSupport/languageserver",
+            "highlightingModeRegex": "^R Script$"
+        },
+        "zig": {
+            "command": ["zls"],
+            "url": "https://github.com/zigtools/zls",
+            "highlightingModeRegex": "^Zig$"
+        }
+    }
+}
+
