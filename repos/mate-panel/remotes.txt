@@ -1,0 +1,3 @@
+origin: git@github.com:mate-desktop/mate-panel.git
+wmww: git@github.com:wmww/mate-panel.git
+
