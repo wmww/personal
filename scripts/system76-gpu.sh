@@ -3,7 +3,7 @@ set -euo pipefail
 
 function print_state {
     # system76-power graphics also does the job
-    if [ $(lspci | grep -i vga | grep -i nvidia) ]; then
+    if lspci | grep -i vga | grep -i nvidia > /dev/null; then
         echo "NVIDIA on"
     else
         echo "NVIDIA off"
