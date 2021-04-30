@@ -21,5 +21,5 @@ else
     echo "CC is already set to $CC"
 fi
 
-cmake "$DIR" -DMIR_USE_LD=lld -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX="$INSTALL" $@
+cmake "$DIR" -DMIR_USE_LD=lld -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX="$INSTALL" -DCMAKE_INSTALL_RPATH="$INSTALL/lib" $@
 
