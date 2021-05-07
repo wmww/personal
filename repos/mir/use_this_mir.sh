@@ -3,7 +3,15 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 INSTALL="$DIR/install"
 
-BIN_PATH="$GTK_INSTALL/usr/local/bin/"
+PC_PATH="$INSTALL/lib/pkgconfig/miral.pc"
+if test ! -e "$PC_PATH"; then
+    echo "$PC_PATH does not exist, please build and locally install:"
+    echo "  mkdir build"
+    echo "  cd build"
+    echo "  ../run_cmake.sh"
+    echo "  make && make install"
+    return 1 # this is a sourced script so `exit` would kill the terminal
+fi
 
 if test "_$CUSTOM_MIR" != "_$INSTALL"; then
     export CUSTOM_MIR="$INSTALL"
