@@ -21,6 +21,7 @@ FILTER="$FILTER:*creating_xdg_surface_from_wl_surface_with_existing_role_is_an_e
 FILTER="$FILTER:*pointer_leaves_surface_during_interactive_resize*"
 FILTER="$FILTER:*SubsurfaceTest*"
 FILTER="$FILTER:*SubsurfaceMultilevelTest*"
+FILTER="$FILTER:XdgToplevelStableTest.touch_can_not_steal_pointer_based_move"
 #FILTER="$FILTER:*CopyCutPaste*"
 
 ./build/wlcs ../mir/build/lib/miral_wlcs_integration.so --gtest_filter="$FILTER" $@
