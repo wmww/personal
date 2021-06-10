@@ -22,19 +22,19 @@ fi
 mkdir -p build
 cd build
 
-export DESTDIR=~/data/code/install/usr
-export BINDIR=${DESTDIR}/bin
-export LIBDIR=${DESTDIR}/lib
-export INCLUDEDIR=${DESTDIR}/include
+export DESTDIR="~/data/code/install/usr"
+export BINDIR="$DESTDIR/bin"
+export LIBDIR="$DESTDIR/lib"
+export INCLUDEDIR="$DESTDIR/include"
 
-mkdir -p ${DESTDIR}
+mkdir -p "$DESTDIR"
 
 cmake .. \
     -DCMAKE_BUILD_TYPE=Debug \
-    -DKDE_INSTALL_BINDIR=${BINDIR} \
-    -DKDE_INSTALL_LIBDIR=${LIBDIR} \
-    -DKDE_INSTALL_INCLUDEDIR=${INCLUDEDIR} \
-    -DCMAKE_INSTALL_PREFIX=${DESTDIR} \
-    -DLIB_INSTALL_DIR=${LIBDIR} \
+    -DKDE_INSTALL_BINDIR="$BINDIR" \
+    -DKDE_INSTALL_LIBDIR="$LIBDIR" \
+    -DKDE_INSTALL_INCLUDEDIR="$INCLUDEDIR" \
+    -DCMAKE_INSTALL_PREFIX="$DESTDIR" \
+    -DLIB_INSTALL_DIR="$LIBDIR" \
     -DKDE_INSTALL_USE_QT_SYS_PATHS=OFF \
     -DBUILD_TESTING=OFF
