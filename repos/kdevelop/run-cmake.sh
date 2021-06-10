@@ -22,7 +22,7 @@ fi
 mkdir -p build
 cd build
 
-export DESTDIR="~/data/code/install/usr"
+export DESTDIR="$(pwd)/install"
 export BINDIR="$DESTDIR/bin"
 export LIBDIR="$DESTDIR/lib"
 export INCLUDEDIR="$DESTDIR/include"
