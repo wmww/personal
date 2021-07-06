@@ -26,5 +26,8 @@ else
     echo "CC is already set to $CC"
 fi
 
+# Generate compile_commands.json for Sourcetrail
+export CMAKE_EXPORT_COMPILE_COMMANDS=1
+
 cmake "$DIR" -DMIR_USE_LD=lld -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX="$INSTALL" -DCMAKE_INSTALL_RPATH="$INSTALL/lib" $@
 
