@@ -1,18 +1,19 @@
 #!/bin/bash
 set -eo pipefail
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+DIR="$(realpath "$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )")"
+BUILD_PATH="$(realpath "$(pwd)")"
 INSTALL="$DIR/install"
 mkdir -p "$INSTALL"
 
-if test $(dirname $PWD) != $DIR; then
+if test $(dirname "$BUILD_PATH") != "$DIR"; then
     echo "You are not in a subdir of $DIR, this is probably a mistake"
     exit 1
 fi
 
 if test -z "$CC"; then
     # If the build directory has "clang" in the name default to Clang, if "gcc" then default to GCC
-    BUILD_DIR=$(basename $(readlink -f $(pwd)))
+    BUILD_DIR=$(basename "$BUILD_PATH")
     if echo "$BUILD_DIR" | grep -i clang >/dev/null; then
         export CC=clang
         echo "In $BUILD_DIR so using Clang"
@@ -28,6 +29,9 @@ fi
 
 # Generate compile_commands.json for Sourcetrail
 export CMAKE_EXPORT_COMPILE_COMMANDS=1
+
+# We may be on a path that includes symlinks, this was causing the KDevelop deletes generated files issue
+cd "$BUILD_PATH"
 
 cmake "$DIR" -DMIR_USE_LD=lld -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX="$INSTALL" -DCMAKE_INSTALL_RPATH="$INSTALL/lib" $@
 
