@@ -1,2 +1,0 @@
-origin: git@gitlab.gnome.org:GNOME/gtk.git
-wmww: git@gitlab.gnome.org:wmww/gtk.git

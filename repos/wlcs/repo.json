@@ -1,0 +1,11 @@
+{
+    "remotes": {
+        "origin": "git@github.com:MirServer/wlcs.git"
+    },
+    "exclude": {
+        "*.kdev4",
+        "build*",
+        "CMakeFiles/",
+        "CMakeCache.txt"
+    }
+}

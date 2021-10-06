@@ -1,2 +1,0 @@
-origin: git@github.com:mate-desktop/mate-notification-daemon.git
-wmww: git@github.com:wmww/mate-notification-daemon.git

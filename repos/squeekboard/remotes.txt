@@ -1,2 +1,0 @@
-origin: git@source.puri.sm:Librem5/squeekboard.git
-wmww: git@source.puri.sm:wmww/squeekboard.git

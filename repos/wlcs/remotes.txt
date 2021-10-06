@@ -1,8 +1,0 @@
-origin:	git@github.com:MirServer/wlcs.git
-
-exclude:
-*.kdev4
-run_against_mir.sh
-build*
-CMakeFiles/
-CMakeCache.txt
