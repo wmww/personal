@@ -27,11 +27,12 @@ class Run:
             self.stderr = stderr.decode('utf-8') if stderr != None else ''
             self.exit_code = p.returncode
 
-    def assert_success(self) -> None:
+    def assert_success(self) -> 'Run':
         assert self.exit_code == 0, (
             '`' + ' '.join(self.args) + '` exited with code ' + str(self.exit_code) + ':\n' +
             self.stdout + '\n---\n' + self.stderr
         )
+        return self
 
 def assert_type(value: Any, expected_type: Any, value_name: str):
     assert isinstance(value, expected_type), (
