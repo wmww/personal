@@ -1,0 +1,9 @@
+[
+    {
+        "name": "twitter-required-alt-text",
+        "remotes": {
+            "origin": "git@github.com:aweary/twitter-required-alt-text.git",
+            "wmww": "git@github.com:wmww/twitter-required-alt-text.git"
+        }
+    }
+]
