@@ -1,5 +1,16 @@
 {
     "remotes": {
         "origin": "git@github.com:MirServer/mir.git"
-    }
+    },
+    "exclude": [
+        "CMakeFiles",
+        "benchmarks",
+        "debian/**.log",
+        "clang-build",
+        "gcc-build",
+        "build",
+        "install",
+        "*.kdev4",
+        ".cache"
+    ]
 }
