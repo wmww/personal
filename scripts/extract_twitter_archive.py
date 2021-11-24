@@ -30,6 +30,8 @@ class Program:
         result.check_returncode()
 
 def path_size(path: str) -> int:
+    if not os.path.exists(path):
+        return 0
     if not os.path.isdir(path):
         return os.path.getsize(path)
     size = 0
@@ -101,6 +103,9 @@ def remove_larger_than(media_dir: str, max_size: float) -> None:
     original = path_size(media_dir)
     removed = 0
     kept = 0
+    if not os.path.isdir(media_dir):
+        logging.info('%s is not a directory, skipping', media_dir)
+        return
     for item in os.listdir(media_dir):
         path = os.path.join(media_dir, item)
         if path_size(path) > max_size:
