@@ -1,2 +1,0 @@
-origin: git@github.com:CoatiSoftware/Sourcetrail.git
-wmww: git@github.com:wmww/Sourcetrail.git

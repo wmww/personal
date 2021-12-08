@@ -1,6 +1,11 @@
 {
     "remotes": {
-        "origin": "git@source.puri.sm:Librem5/squeekboard.git",
-        "wmww": "git@source.puri.sm:wmww/squeekboard.git"
-    }
+        "origin": "git@gitlab.gnome.org:World/Phosh/squeekboard.git",
+        "wmww": "git@gitlab.gnome.org:wmww/squeekboard.git"
+    },
+    "exclude": [
+        ".cache",
+        "build",
+        "install"
+    ]
 }

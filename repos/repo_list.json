@@ -6,6 +6,20 @@
         }
     },
     {
-        "origin": "git@github.com:MirServer/ubuntu-frame.git"
+        "origin": "git@github.com:MirServer/ubuntu-frame.git",
+        "exclude": [
+            ".cache",
+            "build",
+            "*.kdev4",
+            "*.snap"
+        ]
+    },
+    {
+        "origin": "git@github.com:MirServer/ubuntu-frame-osk.git",
+        "exclude": ["*.snap"]
+    },
+    {
+        "origin": "git@github.com:wmww/wayland-debug-snap.git",
+        "exclude": ["*.snap"]
     }
 ]
