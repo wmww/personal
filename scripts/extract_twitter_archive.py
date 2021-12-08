@@ -16,6 +16,8 @@ default_target = os.path.expanduser('~/heavy/Resources/Backup')
 rt_media_max_size = 1024 * 1024
 media_max_size = 1024 * 1024 * 10
 
+# TODO: add multi-account support, using `unzip -p file.zip data/account.js` to ID the account
+
 class Program:
     def __init__(self, program: str, package: str):
         result = subprocess.run(['which', program], capture_output=True)
