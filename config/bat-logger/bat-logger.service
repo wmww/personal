@@ -1,0 +1,11 @@
+[Unit]
+Description=Log battery charge and stats
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=60
+ExecStart=/usr/local/bin/bat-logger.py
+
+[Install]
+WantedBy=multi-user.target
