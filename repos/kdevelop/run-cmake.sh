@@ -5,7 +5,6 @@
 
 # Safe mode
 set -euo pipefail
-IFS=$'\n\t'
 
 # Echo commands to terminal
 set -x

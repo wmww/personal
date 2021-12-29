@@ -1,6 +1,5 @@
 #!/bin/bash
 set -euo pipefail
-IFS=$'\n\t'
 
 if [ ! -d ".git" ]; then
   echo 'No .git directory'
