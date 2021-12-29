@@ -1,6 +1,3 @@
-# tcp = true
-# websockets = true
-# webrtc = true
-https = false
-# http_content = "../web/dist"
-# max_game_time = 1200
+http_port = 56560
+http_loopback = true
+http_static_content = "../web/public"
