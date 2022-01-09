@@ -52,10 +52,18 @@ def format_size(size: float) -> str:
     return str(size) + 'PB'
 
 def format_reduction(initial: float, final: float) -> str:
+    percent = int((initial - final) / initial * 1000) / 10.0
+    if percent > 0:
+        word = 'smaller'
+    elif percent < 0:
+        word = 'bigger'
+    else:
+        word = 'same size'
+    percent = abs(percent)
     return (
         'from ' + format_size(initial) +
         ' to ' + format_size(final) +
-        ' (' + str(int((initial - final) / initial * 1000) / 10.0) + '%)'
+        ' (' + str(percent) + '% ' + word + ')'
     )
 
 def downloads_dir() -> str:
@@ -180,13 +188,16 @@ def latest_archive() -> Tuple[str, datetime.date]:
     )
     return candidate
 
-def trash_old(parent: str, trash: Program) -> None:
+def trash_old(parent: str, trash: Program) -> float:
+    cumulative_size = 0
     for item in os.listdir(parent):
         path = os.path.join(parent, item)
         if os.path.isdir(path) and item.startswith(output_file_prefix):
             size = path_size(path)
             trash.run([path])
             logging.info('old archive \'%s\' trashed (size: %s)', item, format_size(size))
+            cumulative_size += size
+    return cumulative_size
 
 def find_target(target_arg: Optional[str]) -> str:
     if target_arg is not None:
@@ -217,14 +228,16 @@ def main() -> None:
     elif len(sys.argv) > 2:
         assert False, 'Invalid number of arguments'
     target = find_target(target_arg)
-    trash_old(target, trash)
+    old_size = trash_old(target, trash)
     dir_name = output_file_prefix + date.strftime(output_file_date_format)
     dest = os.path.join(target, dir_name)
     unzip.run(['-q', source, '-d', dest])
     initial_dest_size = path_size(dest)
     logging.info('archive extracted into \'%s\' (size: %s)', dest, format_size(initial_dest_size))
     trim_archive_size(dest)
-    logging.info('archive size reduced %s', format_reduction(initial_dest_size, path_size(dest)))
+    new_size = path_size(dest)
+    logging.info('archive size reduced %s', format_reduction(initial_dest_size, new_size))
+    logging.info('since previous archive, size changed %s', format_reduction(old_size, new_size))
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
