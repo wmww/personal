@@ -12,7 +12,10 @@ from typing import Tuple, Optional
 human_date_format = '%b %-d, %Y'
 output_file_prefix = 'Twitter Data '
 output_file_date_format = '%Y-%m-%d'
-default_target = os.path.expanduser('~/heavy/Resources/Backup')
+default_targets = [
+    os.path.expanduser('~/heavy/Resources/Backup'),
+    os.path.expanduser('~/data/heavy/Resources/Backup'),
+]
 rt_media_max_size = 1024 * 1024
 media_max_size = 1024 * 1024 * 10
 
@@ -185,12 +188,22 @@ def trash_old(parent: str, trash: Program) -> None:
             trash.run([path])
             logging.info('old archive \'%s\' trashed (size: %s)', item, format_size(size))
 
+def find_target(target_arg: Optional[str]) -> str:
+    if target_arg is not None:
+        assert os.path.isdir(target_arg), target_arg + ' is not a valid directory'
+        return target_arg
+    else:
+        for target in default_targets:
+            if os.path.isdir(target):
+                return target
+        assert False, 'Failed to find target, none of these exist:\n  ' + '\n  '.join(default_targets)
+
 def main() -> None:
     if '-h' in sys.argv or '--help' in sys.argv:
         print(
             'Tool that:\n' +
             ' - finds the latest Twitter archive in ~/Downloads\n' +
-            ' - extracts it to the given argument or ' + default_target + '\n' +
+            ' - extracts it to the given directory or of the defaults\n' +
             ' - trashes old archives\n' +
             ' - deletes unneeded large files in the archive'
         )
@@ -198,16 +211,15 @@ def main() -> None:
     trash = Program('trash', 'trash-cli')
     unzip = Program('unzip', 'unzip')
     source, date = latest_archive()
-    if len(sys.argv) == 1:
-        parent = default_target
-    elif len(sys.argv) == 2:
-        parent = sys.argv[1]
-    else:
+    target_arg = None
+    if len(sys.argv) == 2:
+        target_arg = sys.argv[1]
+    elif len(sys.argv) > 2:
         assert False, 'Invalid number of arguments'
-    assert os.path.isdir(parent), parent + ' is not a valid directory'
-    trash_old(parent, trash)
+    target = find_target(target_arg)
+    trash_old(target, trash)
     dir_name = output_file_prefix + date.strftime(output_file_date_format)
-    dest = os.path.join(parent, dir_name)
+    dest = os.path.join(target, dir_name)
     unzip.run(['-q', source, '-d', dest])
     initial_dest_size = path_size(dest)
     logging.info('archive extracted into \'%s\' (size: %s)', dest, format_size(initial_dest_size))
