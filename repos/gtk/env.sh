@@ -4,6 +4,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 TRIPLET=$(gcc -dumpmachine)
 
 export GTK_INSTALL="$DIR/install"
+export DESTDIR="$GTK_INSTALL/usr/local"
 mkdir -p "$GTK_INSTALL"
 
 BIN_PATH="$GTK_INSTALL/usr/local/bin/"
