@@ -13,6 +13,7 @@ if test -f "$DIR/meson.build"; then
     fi
     ninja -C "$DIR/build-meson"
     ninja -C "$DIR/build-meson" install
+    gtk-query-immodules-3.0 >"$GTK_IM_MODULE_FILE"
 else
     cd $DIR
     if test ! -f "Makefile"; then

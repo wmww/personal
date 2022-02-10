@@ -2,9 +2,15 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 TRIPLET=$(gcc -dumpmachine)
+MAJOR_VERSION=3
+if test -f "$DIR/meson.build"; then
+    MAJOR_VERSION=$(grep -Po "version\s*:\s*'\d*\." "meson.build" | sed 's/[^0-9]//g')
+fi
 
 export GTK_INSTALL="$DIR/install"
 export DESTDIR="$GTK_INSTALL"
+export GTK_IM_MODULE_FILE="$GTK_INSTALL/immodules.cache"
+export GTK_PATH="$GTK_INSTALL/usr/local/lib/$TRIPLET/gtk-${MAJOR_VERSION}.0/"
 mkdir -p "$GTK_INSTALL"
 
 BIN_PATH="$GTK_INSTALL/usr/local/bin/"
@@ -19,11 +25,10 @@ else
 fi
 
 # Look for a gtk-launch with "install" in it's path to detect the version
-GTK_VERSION="[unknown]"
-if which gtk4-launch | grep "install" >/dev/null; then
-    GTK_VERSION=$(gtk4-launch --version)
-elif which gtk-launch | grep "install" >/dev/null; then
+if test "$MAJOR_VERSION" = "3"; then
     GTK_VERSION=$(gtk-launch --version)
+else
+    GTK_VERSION=$("gtk${MAJOR_VERSION}-launch" --version)
 fi
 
 echo "Using GTK in $GTK_INSTALL (v$GTK_VERSION)"
