@@ -183,7 +183,7 @@ def latest_archive() -> Tuple[str, datetime.date]:
     assert candidate is not None, 'no file matching ' + pattern + ' in ' + downloads
     logging.info(
         'newest archive from %s (zipped size: %s)',
-        date.strftime(human_date_format),
+        candidate[1].strftime(human_date_format),
         format_size(path_size(candidate[0]))
     )
     return candidate
