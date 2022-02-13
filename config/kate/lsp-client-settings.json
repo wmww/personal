@@ -27,8 +27,7 @@
             "highlightingModeRegex": "^Fortran.*$"
         },
         "go": {
-            "command": ["go-langserver"],
-            "commandDebug": ["go-langserver", "-trace"],
+            "command": ["bingo"],
             "url": "https://github.com/sourcegraph/go-langserver",
             "highlightingModeRegex": "^Go$"
         },
