@@ -65,6 +65,8 @@ case $1 in
     echo "Enabling GDM..."
     dpkg-reconfigure gdm3
     print_info
+    echo "Starting GDM..."
+    systemctl start gdm
     ;;
 "off")
     assert_root
