@@ -18,7 +18,7 @@ def set_timezone_ubuntu() -> None:
     cmd = 'sudo dpkg-reconfigure tzdata'
     logging.info('running `%s`', cmd)
     subprocess.run(cmd.split()).check_returncode()
-    logging.info('success!', cmd)
+    logging.info('success!')
 
 def get_timezones_arch() -> list[str]:
     result = subprocess.run('timedatectl list-timezones'.split(), encoding='utf-8', capture_output=True)
@@ -92,6 +92,7 @@ def user_get_zone(zone: Zone) -> str:
         zone = pairs[num - 1][1]
     return result
 
+# NOTE: this also seems to work on modern Ubuntu
 def set_timezone_arch() -> None:
     zone_str_list = get_timezones_arch()
     logging.info('detected %d timezones', len(zone_str_list))
