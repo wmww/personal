@@ -156,6 +156,9 @@
 	
 	#KDE connect
 	#exec --no-startup-id /usr/lib/kdeconnectd
+	
+	#For xdg-desktop-portal-wlr
+	exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 #__________________________________/ Set Launch Bindings \__________________________________
 
